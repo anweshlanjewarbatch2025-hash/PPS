@@ -1,0 +1,41 @@
+date = int(input())
+month = int(input())
+year = int(input())
+
+flag = True
+
+if month <= 0 or month > 12 or year < 0:
+	flag = False
+
+if flag:
+	if month in (1, 3, 5, 7, 8, 10, 12):
+		max_days = 31
+	elif month in (4, 6, 9, 11):
+		max_days = 30
+	elif month == 2:
+		if year % 4 == 0:
+			max_days = 29
+		else:
+			max_days = 28
+	else:
+		flag = False
+
+if flag:
+	if date <= 0 or date > max_days:
+		flag = False
+
+if flag:
+	if month == 12 and date == 31:
+		date = 1
+		month = 1
+		year += 1
+	elif date == max_days:
+		date = 1
+		month += 1
+	else:
+		date += 1
+
+if not flag:
+	print("Invalid Date")
+else:
+	print(f"{date:02d}-{month:02d}-{year}")
